@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<header>
+<title>toDO</title>
+<link rel="stylesheet" href="static\styles.css">
+</header>
+
+<body>
+<h1 id="title">Simple to do list</h1>
+<div class="cards">
+    <input id="listItem">
+<p></p>
+    <img src="src\add.png" style="width: 30px; height: 30px;"
+    id="addBtn" onclick="addItem()">
+</div>
+
+<script>
+    // array to give the item number
+    let itemIterator = 0;
+
+    document.onkeypress = function(e){
+        // Triger the addItem function when the "Enter" key is pressed.
+        if(e.which===13){
+            addItem();
+        }
+    }
+
+    function addItem(){
+        // Create objects for DOM elements
+        let textBoxElement = document.createElement("p");
+        let userInput = document.getElementById("listItem").value;
+        let text = document.createTextNode(userInput);
+        let cardEl = document.getElementsByClassName("cards")[0];
+
+        // Clear the input box and prepend the text into a "card" above it
+        textBoxElement.id = ""
+        textBoxElement.appendChild(text);
+        cardEl.prepend(textBoxElement);
+        document.getElementById("listItem").value = "";
+
+        // assign elementId for the specific card
+        itemIterator++;
+        textBoxElement.id = itemIterator.toString;
+        textBoxElement.onclick = function(e){
+            textBoxElement.style.textDecoration = "line-through";
+        }
+    }
+
+
+
+</script>
+</body>
